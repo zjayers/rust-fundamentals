@@ -13,6 +13,13 @@ fn print_verified(account: &BankAccount) {
     println!("{:?}", account.verified)
 }
 
+fn is_verified(account: &BankAccount) -> Result<bool, bool> {
+    match account.verified {
+        true => Ok(true),
+        false => Err(false)
+    }
+}
+
 fn main() {
     // Variables (snake_case) - Variables are immutable unless the mut keyword is provided.
     let mutable_tag = "CHANGE ME";
@@ -46,6 +53,8 @@ fn main() {
 
     print_balance(&my_account);
     print_verified(&my_account);
+    let err_status = is_verified(&my_account).is_err();
+    println!("{:?}", err_status)
 }
 
 fn add(num_one :i32, num_two :i32) -> i32 {
